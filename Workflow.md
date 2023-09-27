@@ -66,6 +66,28 @@ npm start
 
 В процессе запуска проекта будет выполнен процесс «Сборки проекта» и запуска результирующего кода.
 
+#### Запуск CLI по умолчанию (--help)
+
+node ./dist/main.cli.js 
+
+node ./dist/main.cli.js --help 
+
+#### Вывести версию проекта 
+
+node ./dist/main.cli.js --version 
+
+#### Импорт данных
+
+--import <filepath>
+
+node ./dist/main.cli.js --import ./mocks/test-data.tsv
+
+#### Сгенерировать данные на основе mock-server-data.json при запущенном json-server
+
+--generate <n> <filepath> <url>
+
+npm run ts ./src/main.cli.ts -- --generate 100 ./mocks/test-data.tsv http://localhost:3123/api 
+
 ## Структура проекта
 
 ### Директория `src`
