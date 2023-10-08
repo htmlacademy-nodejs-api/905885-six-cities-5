@@ -15,5 +15,6 @@ export * from './offer/premium.type.js';
 export * from './comment/comment.type.js';
 
 // json data
-
 export * from './mock-server-data.type.js';
+
+export * from './component.enum.js';
