@@ -1,3 +1,1 @@
-export type Image = {
-  link: string;
-}
+export type Image = string

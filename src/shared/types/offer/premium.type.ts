@@ -1,3 +1,3 @@
 export type Premium = {
-  premium: boolean;
+  name: string
 }

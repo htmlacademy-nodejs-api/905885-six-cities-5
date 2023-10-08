@@ -1,4 +1,4 @@
-import { Offer } from '../types/index.js';
+import { Apartment, City, Comfort, Offer, Premium, UserType } from '../types/index.js';
 
 export function createOffer(offerData: string): Offer {
   const [
@@ -30,26 +30,26 @@ export function createOffer(offerData: string): Offer {
     mail: authorEmail,
     avatar: authorAvatar,
     password: authorPassword,
-    userType: { pro: authorType === 'true' },
+    userType: UserType[authorType as 'pro' | 'default'],
   };
 
   return {
     title,
     description,
     postDate: new Date(postDate),
-    city: { name: city },
+    city: City[city as 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf'],
     imagePreview,
     images: images.split(';')
-      .map((name) => ({ link: name })),
-    premium: premium === 'true',
+      .map((name) => name),
+    premium: Premium[premium as 'premium' | 'default'],
     favourite: favourite === 'true',
     rating: +rating,
-    apartmentType: { name: apartmentType },
+    apartmentType: Apartment[apartmentType as 'apartment' | 'house' | 'room' | 'hotel'],
     roomCount: +roomCount,
     guestsCount: +guestsCount,
     cost: +cost,
     comfort: comfort.split(';')
-      .map((name) => ({ name })),
+      .map((name) => Comfort[name as 'Breakfast' | 'AirConditioning' | 'LaptopFriendlyWorkspace' | 'BabySeat' | 'Washer' | 'Towels' | 'Fridge']),
     author: user,
     commentsCount: +commentsCount,
     coords

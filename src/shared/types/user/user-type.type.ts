@@ -1,3 +1,3 @@
 export type UserType = {
-  pro: boolean;
+  name: string;
 }

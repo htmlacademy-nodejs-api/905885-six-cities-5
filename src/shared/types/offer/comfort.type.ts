@@ -1,3 +1,3 @@
 export type Comfort = {
-  name: string;
+  name: string
 }
