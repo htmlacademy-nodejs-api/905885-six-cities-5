@@ -1,18 +1,32 @@
 import 'reflect-metadata';
 import { Container } from 'inversify';
-import { Logger, PinoLogger } from './shared/libs/logger/index.js';
 import { RestApplication } from './rest/index.js';
-import { Config, RestConfig, RestSchema } from './shared/libs/config/index.js';
 import { Component } from './shared/types/index.js';
+import { createRestApplicationContainer } from './rest/rest.container.js';
+import { createUserContainer } from './shared/modules/user/index.js';
+import { createOfferContainer } from './shared/modules/offer/offer.container.js';
+import { createUserTypeContainer } from './shared/modules/user-type/user-type.container.js';
+import { createApartmentContainer } from './shared/modules/apartment/apartment.container.js';
+import { createCityContainer } from './shared/modules/city/city.container.js';
+import { createComfortContainer } from './shared/modules/comfort/comfort.container.js';
+import { createCommentContainer } from './shared/modules/comment/comment.container.js';
+import { createPremiumContainer } from './shared/modules/premium/premium.container.js';
 
 
 async function bootstrap() {
-  const container = new Container();
-  container.bind<RestApplication>(Component.RestApplication).to(RestApplication).inSingletonScope();
-  container.bind<Logger>(Component.Logger).to(PinoLogger).inSingletonScope();
-  container.bind<Config<RestSchema>>(Component.Config).to(RestConfig).inSingletonScope();
+  const appContainer = Container.merge(
+    createRestApplicationContainer(),
+    createUserContainer(),
+    createUserTypeContainer(),
+    createOfferContainer(),
+    createApartmentContainer(),
+    createCityContainer(),
+    createComfortContainer(),
+    createCommentContainer(),
+    createPremiumContainer(),
+  );
 
-  const application = container.get<RestApplication>(Component.RestApplication);
+  const application = appContainer.get<RestApplication>(Component.RestApplication);
   await application.init();
 }
 

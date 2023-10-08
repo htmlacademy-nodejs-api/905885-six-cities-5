@@ -1,3 +1,1 @@
-export type Favourite = {
-  favourite: boolean
-}
+export type Favourite = boolean

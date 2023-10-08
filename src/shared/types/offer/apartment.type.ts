@@ -1,3 +1,3 @@
 export type Apartment = {
-  name: string;
+  name: string
 }
